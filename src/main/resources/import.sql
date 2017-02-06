@@ -1,0 +1,1 @@
+insert into user(user_id, password, name, email) values ('hide305', '1234', '아론','hide305@naver.com')
