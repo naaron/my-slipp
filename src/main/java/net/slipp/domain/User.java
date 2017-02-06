@@ -56,8 +56,6 @@ public class User {
 		this.password = newUser.password;
 		this.name = newUser.name;
 		this.email = newUser.email;
-		
-		
 	}
 
 }
