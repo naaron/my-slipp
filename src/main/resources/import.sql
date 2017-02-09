@@ -1,2 +1,0 @@
-insert into user(user_id, password, name, email) values ('hide305', '1234', '아론','hide305@naver.com')
-insert into user(user_id, password, name, email) values ('hide304', '1234', '나아론','hide304@naver.com')
