@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.slipp.domain.User;
 import net.slipp.domain.UserRepository;
+import net.slipp.utils.HttpSessionUtils;
 
 @Controller
 @RequestMapping("/users")
