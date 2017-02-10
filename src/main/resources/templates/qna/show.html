@@ -50,7 +50,7 @@
 			  
               <div class="qna-comment">
                   <div class="qna-comment-slipp">
-                      <p class="qna-comment-count"><strong>2</strong>개의 의견</p>
+                      <p class="qna-comment-count"><strong>{{countOfAnswer}}</strong>개의 의견</p>
                       <div class="qna-comment-slipp-articles">
 						  {{#answer}}
                           <article class="article" id="answer-1405">
@@ -74,17 +74,14 @@
                                           <a class="link-modify-article" href="/questions/413/answers/1405/form">수정</a>
                                       </li>
                                       <li>
-                                          <form class="delete-answer-form" action="/questions/413/answers/1405" method="POST">
-                                              <input type="hidden" name="_method" value="DELETE">
-                                              <button type="submit" class="delete-answer-button">삭제</button>
-                                          </form>
-                                      </li>
+										  <a class="link-delete-article" href="/api/questions/{{question.id}}/answers/{{id}}">삭제</a>
+									  </li>
                                   </ul>
                               </div>
                           </article>
                           {{/answer}}
                           
-                          <form class="submit-write" action="/questions/{{id}}/answers" method="post">
+                          <form class="answer-write" action="/api/questions/{{id}}/answers" method="post">
                               <div class="form-group" style="padding:14px;">
                                   <textarea class="form-control" placeholder="Update your status" name="contents"></textarea>
                               </div>
@@ -120,10 +117,7 @@
 				<a class="link-modify-article" href="/api/qna/updateAnswer/{3}">수정</a>
 			</li>
 			<li>
-				<form class="delete-answer-form" action="/api/questions/{3}/answers/{4}" method="POST">
-					<input type="hidden" name="_method" value="DELETE">
-                     <button type="submit" class="delete-answer-button">삭제</button>
-				</form>
+				<a class="link-delete-article" href="/api/questions/{3}/answers/{4}">삭제</a>
 			</li>
 		</ul>
 		</div>

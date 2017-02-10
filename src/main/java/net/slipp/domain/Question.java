@@ -14,20 +14,33 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
+import org.springframework.core.annotation.Order;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 public class Question {
 	@Id
 	@GeneratedValue
+	@JsonProperty
 	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_question_writer"))
+	@JsonProperty
 	private User writer;
+	
+	@JsonProperty
 	private String title;
 	
 	@Lob
+	@JsonProperty
 	private String contents;
+	
+	@JsonProperty
+	private Integer countOfAnswer = 0;
+	
 	private LocalDateTime createDate;
 	
 	@OneToMany(mappedBy = "question")
@@ -43,8 +56,31 @@ public class Question {
 		this.createDate = LocalDateTime.now();
 	}
 	
+	/*
+	 * 2017.02.10
+	 * 댓글 갯수 증가
+	 * author : aron
+	 */
+	public void addAnswer() {
+		this.countOfAnswer += 1;
+	}
+	
+	/*
+	 * 2017.02.10
+	 * 댓글 갯수 감소
+	 * author : aron
+	 */
+	public void deleteAnswer() {
+		this.countOfAnswer -= 1;
+	}
+
+	/*
+	 * 2017.02.10
+	 * 날짜 포멧 ex)2017.02.10 10:10:10
+	 * author : aron
+	 */
 	public String getFormattedCreateDate() {
-		if (createDate == null){
+		if(createDate == null){
 			return "";
 		}
 		return createDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
@@ -84,6 +120,7 @@ public class Question {
 			return false;
 		return true;
 	}
+
 	
 	
 	
