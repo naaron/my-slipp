@@ -1,6 +1,5 @@
 package net.slipp.domain;
 
-
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
@@ -9,35 +8,29 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 @Entity
-public class Answer extends AbstractEntity {
+public class Thumnail extends AbstractEntity {
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_thumnail_writer"))
 	@JsonProperty
 	private User writer;
 	
-	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_to_question"))
 	@JsonProperty
-	private Question question;
+	private String title;
 	
 	@Lob
 	@JsonProperty
 	private String contents;
 	
+	@JsonProperty
+	private String fileName;
 	
-	public Answer(){}
-	
-	public Answer(User writer, Question question, String contents) {
+	public Thumnail() {}
+	public Thumnail(User writer, String title, String contents, String fileName) {
+		super();
 		this.writer = writer;
-		this.question = question;
+		this.title = title;
 		this.contents = contents;
+		this.fileName = fileName;
 	}
-	
-
-	public boolean isSameWriter(User loginUser) {
-		return loginUser.equals(this.writer);
-	}
-	
 }

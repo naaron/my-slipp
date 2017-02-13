@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	{{> /include/head}}
+</head>
+	
+	<body>
+{{> /include/navigation}}
+
+<div class="container" id="main">
+   <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
+      <div class="panel panel-default qna-list">
+         <div class="row">
+          {{#thumnail}}
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      {{^fileName}}
+              <img src="/images/80-text.png" alt="{{title}}">
+              {{/fileName}}
+              {{#fileName}}
+              <img src="/upload/{{fileName}}" alt="{{title}}" width="250" height="230">
+              {{/fileName}}
+		      <div class="caption">
+		        <h3>{{title}}</h3>
+		        <p>{{contents}}</p>
+		      </div>
+		    </div>
+		  </div>
+		  {{/thumnail}}
+		</div>
+		  
+          <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6 text-center">
+                  <ul class="pagination center-block" style="display:inline-block;">
+                      <li><a href="#">«</a></li>
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                      <li><a href="#">»</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 qna-write">
+                  <a href="/thumnail/form" class="btn btn-primary pull-right" role="button">등록하기</a>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+	</body>
+</html>
