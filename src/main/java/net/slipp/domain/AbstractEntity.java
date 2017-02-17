@@ -7,6 +7,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -32,7 +33,6 @@ public class AbstractEntity {
 		return id;
 	}
 	
-
 	public String getFormattedCreateDate() {
 		return getFormattedData(createDate, "yyyy.MM.dd HH:mm:ss");
 	}
@@ -40,6 +40,7 @@ public class AbstractEntity {
 	public String getFormattedModifiedDate() {
 		return getFormattedData(createDate, "yyyy.MM.dd HH:mm:ss");
 	}
+	
 	/*
 	 * 2017.02.10
 	 * 날짜 포멧 ex)2017.02.10 10:10:10

@@ -22,7 +22,7 @@ import net.slipp.utils.HttpSessionUtils;
 public class QuestionController {
 	
 	@Autowired
-	private QuestionRepository questionRepository; 
+	private QuestionRepository questionRepository;
 	
 	@GetMapping("/form")
 	public String form(HttpSession session) {

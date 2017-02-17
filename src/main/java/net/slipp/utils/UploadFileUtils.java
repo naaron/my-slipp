@@ -12,20 +12,19 @@ import java.util.Random;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadFileUtils {
-	private final String UPLOADPATH = "D:\\workspace-sts\\my-slipp\\src\\main\\resources\\static\\upload\\";
+	private static final String UPLOADPATH = "D:\\workspace-sts\\my-slipp\\src\\main\\resources\\static\\upload\\";
 
-	Date date = new Date();
-	public String dateYear = new SimpleDateFormat("yyyy").format(date);
-	public String dateMonth = new SimpleDateFormat("MM").format(date);
+	static Date date = new Date();
+	public static String DATEYEAR = new SimpleDateFormat("yyyy").format(date);
+	public static String DATEMONTH = new SimpleDateFormat("MM").format(date);
 			
-	public String dbPath = dateYear+"/"+dateMonth+"/";
-	public String savePath = UPLOADPATH+"\\"+dateYear+"\\"+dateMonth+"\\";
-	public String saveFolder=  UPLOADPATH +"\\"+dateYear+"\\"+dateMonth;
+	public static String DBPATH = DATEYEAR+"/"+DATEMONTH+"/";
+	public static String SAVEPATH=  UPLOADPATH +"\\"+DATEYEAR+"\\"+DATEMONTH;
 	
 	
-	public void singleFileUpload(MultipartFile file, StringBuffer dbFileName) {
+	public static void singleFileUpload(MultipartFile file, StringBuffer dbFileName) {
         try {
-	        File targetDir = new File(saveFolder);  
+	        File targetDir = new File(SAVEPATH);  
 	        
 	        if(!targetDir.exists()) { 
 	        	targetDir.mkdirs();
@@ -33,7 +32,7 @@ public class UploadFileUtils {
         	        
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(savePath + dbFileName);
+            Path path = Paths.get(SAVEPATH +"\\"+ dbFileName);
             Files.write(path, bytes);
 
         } catch (IOException e) {
@@ -47,7 +46,7 @@ public class UploadFileUtils {
 	 * author : aron
 	 * 
 	 */
-	public StringBuffer randomStringFormat(String fileName) {
+	public static StringBuffer randomStringFormat(String fileName) {
 		Random rand = new Random();
 		StringBuffer buf = new StringBuffer();
 		 

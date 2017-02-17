@@ -40,6 +40,7 @@ public class Question extends AbstractEntity {
 		this.writer = writer;
 		this.title = title;
 		this.contents = contents;
+		
 	}
 	
 	/*
@@ -69,9 +70,5 @@ public class Question extends AbstractEntity {
 	public boolean isSameWriter(User loginUser) {
 		return this.writer.equals(loginUser);
 	}
-	
-
-	
-	
 	
 }

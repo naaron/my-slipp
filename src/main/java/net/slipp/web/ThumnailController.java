@@ -21,7 +21,7 @@ import net.slipp.utils.UploadFileUtils;
 
 @Controller
 @RequestMapping("/thumnail")
-public class ThumnailController extends UploadFileUtils{
+public class ThumnailController {
 	@Autowired
 	private ThumnailRepository thumnailRepository;
 	
@@ -44,15 +44,20 @@ public class ThumnailController extends UploadFileUtils{
 	@PostMapping("")
 	public String create(HttpSession session, String title, String contents, @RequestParam("file") MultipartFile realFile) {
 		User sessionUser = HttpSessionUtils.getUserFromSession(session);
-		StringBuffer dbFileName = randomStringFormat(realFile.getOriginalFilename());
+		String fileName = null;
 		
-		Thumnail newThumnail = new Thumnail(sessionUser, title, contents, dbPath+dbFileName);
+		if(!realFile.isEmpty()) {
+			StringBuffer dbFileName = UploadFileUtils.randomStringFormat(realFile.getOriginalFilename());
+			// File Upload
+			UploadFileUtils.singleFileUpload(realFile, dbFileName);
+			
+			fileName = UploadFileUtils.DBPATH + dbFileName;
+		}
+		
+		
+		Thumnail newThumnail = new Thumnail(sessionUser, title, contents, fileName);
 		thumnailRepository.save(newThumnail);
 		
-		// File Upload
-		UploadFileUtils uploadFile = new UploadFileUtils();
-		uploadFile.singleFileUpload(realFile, dbFileName);
-		
-		return "/thumnail/list";
+		return "redirect:/thumnail/";
 	}
 }
